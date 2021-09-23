@@ -4,8 +4,8 @@ import json
 import os
 from discord.ext import commands
 
-bot = commands.Bot(os.environ['prefix'], activity=activity, status=discord.Status.idle)
 activity = discord.Game(name="!help")
+bot = commands.Bot(os.environ['prefix'], activity=activity, status=discord.Status.idle)
 
 @bot.event
 async def on_ready():
