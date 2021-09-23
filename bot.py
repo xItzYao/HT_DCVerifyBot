@@ -4,12 +4,12 @@ import json
 import os
 from discord.ext import commands
 
-activity = discord.Streaming(name="!help | !check進行身分認證", url="https://www.twitch.tv/")
-bot = commands.Bot(os.environ['prefix'], activity=activity, status=discord.Status.online)
+bot = commands.Bot(os.environ['prefix'])
 
 @bot.event
 async def on_ready():
     print('澳門首家ㄐㄐ賭場上線啦')
+    await bot.change_presence(activity = discord.Streaming(name = "!help | !check進行身分認證", url = "https://www.twitch.tv/"))
 
 for fileName in os.listdir('./commands'):
     if fileName.endswith('.py'):
