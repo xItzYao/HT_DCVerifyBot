@@ -4,12 +4,12 @@ import json
 import os
 from discord.ext import commands
 
-bot = commands.Bot(os.environ['prefix'])
+bot = commands.Bot(os.environ['prefix'], activity=activity, status=discord.Status.idle)
+activity = discord.Game(name="!help")
 
 @bot.event
 async def on_ready():
     print('澳門首家ㄐㄐ賭場上線啦')
-    await bot.change_presence(activity=discord.Streaming(name="!help獲得指令列表 | !check進行身分認證", url=my_twitch_url))
 
 for fileName in os.listdir('./commands'):
     if fileName.endswith('.py'):
