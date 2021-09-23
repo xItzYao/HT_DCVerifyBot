@@ -9,6 +9,7 @@ bot = commands.Bot(os.environ['prefix'])
 @bot.event
 async def on_ready():
     print('澳門首家ㄐㄐ賭場上線啦')
+    await bot.change_presence(activity=discord.Streaming(name="!help獲得指令列表 | !check進行身分認證", url=my_twitch_url))
 
 for fileName in os.listdir('./commands'):
     if fileName.endswith('.py'):
