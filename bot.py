@@ -4,7 +4,7 @@ import json
 import os
 from discord.ext import commands
 
-activity = discord.Streaming(name="!help | !check進行身分認證", url="https://www.twitch.tv/")
+activity = discord.Game(name="!help | !check進行身分認證")
 bot = commands.Bot(os.environ['prefix'], activity=activity, status=discord.Status.idle)
 
 @bot.event
