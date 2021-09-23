@@ -11,18 +11,18 @@ from difflib import *
 
 class Check(Cog_Extension):
     @commands.command()
-    async def check(self, ctx, mcid):
+    async def check(self, ctx):
         await ctx.send(f"<@!{ctx.message.author.id}> Checking......")
         nickname = str(ctx.message.author.display_name)
         if SequenceMatcher(None, nickname, "<>").ratio() == 0:
-            await ctx.send("暱稱格式不正確\n請改為暱稱<Minecraft ID>\n如果你沒有Mineccraft ID 請輸入!check noid")
+            await ctx.send("暱稱格式不正確\n請改為暱稱<Minecraft ID>\n如果沒有Minecraft ID 請將暱稱改為暱稱<no ID>")
         else:
-            if mcid == "noid":
-                pRank = "None"
+            id = nickname.split('<')
+            id1 = id[1].split('>')
+            await ctx.send(f"Minecraft ID : {id1[0]}")
+            if id1[0] == "no ID":
+                memberRoleG = discord.utils.get(ctx.guild.roles, name='🌈好捧油🌈<Friend>')
             else:
-                id = nickname.split('<')
-                id1 = id[1].split('>')
-                await ctx.send(f"Minecraft ID : {id1[0]}")
                 r2 = requests.get(f"https://api.mojang.com/users/profiles/minecraft/{id1[0]}")
                 print(r2.status_code)
                 if r2.status_code == 200:
@@ -72,14 +72,12 @@ class Check(Cog_Extension):
                 print(memberRole)
                 await ctx.author.add_roles(memberRole)
                 await ctx.send("Hypixel Rank身分組成功增加")
-            if gid['guild'] is None:
-                memberRoleG = discord.utils.get(ctx.guild.roles, name='🌈好捧油🌈<Friend>')
-            elif gjson['guild']['name'] == "HelloTaiwan":
-                memberRoleG = discord.utils.get(ctx.guild.roles, name='普通會員<Member>')
-            elif noid == "noid":
-                memberRoleG = discord.utils.get(ctx.guild.roles, name='🌈好捧油🌈<Friend>')            
-            else:
-                memberRoleG = discord.utils.get(ctx.guild.roles, name='🌈好捧油🌈<Friend>')
+                if gid['guild'] is None:
+                    memberRoleG = discord.utils.get(ctx.guild.roles, name='🌈好捧油🌈<Friend>')
+                elif gjson['guild']['name'] == "HelloTaiwan":
+                    memberRoleG = discord.utils.get(ctx.guild.roles, name='普通會員<Member>')
+                else:
+                    memberRoleG = discord.utils.get(ctx.guild.roles, name='🌈好捧油🌈<Friend>')
             await ctx.author.add_roles(memberRoleG)
             await ctx.send("Discord身分組成功增加\nHaving Fun :U")
 
