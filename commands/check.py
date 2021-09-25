@@ -56,7 +56,7 @@ class Check(Cog_Extension):
                     memberRole = discord.utils.get(ctx.guild.roles, name='MVP+')
                 elif pRank == "MVP":
                     memberRole = discord.utils.get(ctx.guild.roles, name='MVP')
-                elif pRank == "VIP+":
+                elif pRank == "VIP_PLUS":
                     memberRole = discord.utils.get(ctx.guild.roles, name='VIP+')
                 elif pRank == "VIP":
                     memberRole = discord.utils.get(ctx.guild.roles, name='VIP')
