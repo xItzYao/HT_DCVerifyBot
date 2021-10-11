@@ -14,7 +14,7 @@ class Check(Cog_Extension):
     async def check(self, ctx):
         await ctx.send(f"<@!{ctx.message.author.id}> Checking......")
         nickname = str(ctx.message.author.display_name)
-        if SequenceMatcher(None, nickname, "<>").ratio() == 0:
+        if SequenceMatcher(None, nickname, "<").ratio() == 0 or SequenceMatcher(None, nickname, ">").ratio() == 0:
             await ctx.send("暱稱格式不正確\n請改為暱稱<Minecraft ID>\n如果沒有Minecraft ID 請將暱稱改為暱稱<no ID>")
         else:
             id = nickname.split('<')
