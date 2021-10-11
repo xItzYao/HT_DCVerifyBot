@@ -2,7 +2,7 @@
 A DC bot for HelloTaiwan guild.
 
 ### Updates
-###### 2021/10/11
+2021/10/11
 - Add online status.
 
 ### Author
