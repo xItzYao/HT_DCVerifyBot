@@ -41,10 +41,10 @@ class HypixelAPIError(Exception):
     """ Simple exception if something's gone very wrong and the program can't continue. """
     pass
 
-def getJSON(typeOfRequest:str, **kwargs):
+def getJSON(typeOfRequest, **kwargs):
     """ This private function is used for getting JSON from Hypixel's Public API. """
     requestEnd = ''
-    if typeOfRequest == 'key':
+    if typeOfRequest == 12344:
         api_key = os.environ['API_KEY']
     else:
         api_key = choice(verified_api_keys) # Select a random API key from the list available.
@@ -74,7 +74,7 @@ def getJSON(typeOfRequest:str, **kwargs):
         if typeOfRequest == 'player':
             if response['player'] is None:
                 raise PlayerNotFoundException(uuid)
-        if typeOfRequest != 'key': # Don't cache key requests.
+        if typeOfRequest != 12344: # Don't cache key requests.
             requestCache[cacheURL] = {}
             requestCache[cacheURL]['data'] = response
             requestCache[cacheURL]['cacheTime'] = time() + cacheTime # Cache request and clean current cache.
@@ -125,7 +125,7 @@ def setKeys(api_keys):
 
             Example: ``['740b8cf8-8aba-f2ed-f7b10119d28']``.
     """
-    keyy = 'key'
+    keyy = 12344
     for api_key in api_keys:
         if len(api_key) == HYPIXEL_API_KEY_LENGTH:
             response = getJSON(keyy)
