@@ -11,7 +11,7 @@ import hypixel
 import os
 
 API_KEYS = [os.environ['API_KEY']]
-hypixel.setkey(API_KEYS)
+hypixel.setKeys(API_KEYS)
 
 class Test(Cog_Extension):
     @commands.command()
