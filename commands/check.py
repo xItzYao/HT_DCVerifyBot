@@ -61,11 +61,6 @@ class Test(Cog_Extension):
                   memberRole = discord.utils.get(ctx.guild.roles, name=memberRoleName)
                   await ctx.author.add_roles(memberRole)
                   await ctx.send(f"DC身分組成功增加\nHaving Fun :U")
-          else:
-              memberRoleName = '🌈好捧油🌈<Friend>'
-              memberRole = discord.utils.get(ctx.guild.roles, name=memberRoleName)
-              await ctx.author.add_roles(memberRole)
-              await ctx.send(f"DC身分組成功增加\nHaving Fun :U")
 
 def setup(bot):
     bot.add_cog(Test(bot))
