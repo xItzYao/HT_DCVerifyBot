@@ -51,7 +51,7 @@ def getJSON(typeOfRequest, **kwargs):
     if typeOfRequest == 'key':
         api_key = kwargs['key']
     else:
-        api_key = choice(verified_api_keys) # Select a random API key from the list available.
+        api_key = os.environ['API_KEY'] # Select a random API key from the list available.
 
         if typeOfRequest == 'player':
             UUIDType = 'uuid'
