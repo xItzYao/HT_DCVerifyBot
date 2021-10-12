@@ -11,6 +11,11 @@ import grequests
 
 import leveling
 
+import core.hypixel as hypixel
+API = str(os.environ['API_KEY'])
+HYP_API = [API]
+hypixel.setKeys(HYP_API)
+
 HYPIXEL_API_URL = 'https://api.hypixel.net/'
 UUIDResolverAPI = "https://sessionserver.mojang.com/session/minecraft/profile/"
 
