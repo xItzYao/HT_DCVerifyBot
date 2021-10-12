@@ -62,12 +62,15 @@ def getJSON(typeOfRequest, **kwargs):
     # If url exists in request cache, and time hasn't expired...
     if cacheURL in requestCache and requestCache[cacheURL]['cacheTime'] > time():
         response = requestCache[cacheURL]['data'] # TODO: Extend cache time
+        global response
     else:
         requests = (grequests.get(u) for u in allURLS)
         responses = grequests.imap(requests)
         for r in responses:
             response = r.json()
-
+        
+        global response
+        
         if not response['success']:
             raise HypixelAPIError(response)
         if typeOfRequest == 'player':
