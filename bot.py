@@ -1,10 +1,13 @@
 import discord
-import requests
 import json
 import os
 from discord.ext import commands
 
-bot = commands.Bot(os.environ['prefix'])
+intents = discord.Intents.default()
+intents.members = True
+intents.presences = True
+
+bot = commands.Bot(os.environ['prefix'] , intents = intents)
 
 @bot.event
 async def on_ready():
