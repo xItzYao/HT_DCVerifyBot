@@ -126,11 +126,11 @@ def setKeys(api_keys):
     """
     for api_key in api_keys:
         if len(api_key) == HYPIXEL_API_KEY_LENGTH:
-            response1 = getJSON('key', key=api_key)
-            if response1['success']:
+            response = getJSON('key', key=api_key)
+            if response['success']:
                 verified_api_keys.append(api_key)
             else:
-                raise HypixelAPIError("hypixel/setKeys: Error with key XXXXXXXX-XXXX-XXXX-XXXX{} | {}".format(api_key[23:], response1))
+                raise HypixelAPIError("hypixel/setKeys: Error with key XXXXXXXX-XXXX-XXXX-XXXX{} | {}".format(api_key[23:], response))
         else:
             raise HypixelAPIError("hypixel/setKeys: The key '{}' is not 36 characters.".format(api_key))
 
@@ -300,8 +300,8 @@ class Guild:
                 URLStoRequest.append(UUIDResolverAPI + member['uuid'])
         requests = (grequests.get(u) for u in URLStoRequest)
         responses = grequests.map(requests)
-        for response2 in responses:
-            requestCache[UUIDResolverAPI + response2.json()['id']] = response2.json()
+        for response in responses:
+            requestCache[UUIDResolverAPI + response.json()['id']] = response.json()
         i = 0
         for uindex, user in enumerate(allURLS):
             try:
