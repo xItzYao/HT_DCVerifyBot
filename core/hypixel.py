@@ -70,6 +70,7 @@ def getJSON(typeOfRequest, **kwargs):
     if cacheURL in requestCache and requestCache[cacheURL]['cacheTime'] > time():
         response = requestCache[cacheURL]['data'] # TODO: Extend cache time
     else:
+        print(allURLS[0])
         response = json.loads(urllib.request.urlopen(allURLS[0]).read())
 
         if not response['success']:
