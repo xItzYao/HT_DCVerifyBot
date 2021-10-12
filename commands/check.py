@@ -10,16 +10,10 @@ from difflib import *
 import core.hypixel as hypixel
 import os
 
-API = str(os.environ['API_KEY'])
-HYP_API = [API]
-
-hypixel.setKeys(HYP_API)
-
 class Test(Cog_Extension):
     @commands.command()
     async def check(self,ctx):
           await ctx.send(f"{ctx.message.author.mention} Checking......")
-          print(HYP_API)
           nickname = ctx.message.author.display_name
           if SequenceMatcher(None, nickname, "<").ratio() == 0 or SequenceMatcher(None, nickname, ">").ratio() == 0:
               await ctx.send("暱稱格式不正確\n請改為暱稱<Minecraft ID>")
