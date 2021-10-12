@@ -43,6 +43,13 @@ class HypixelAPIError(Exception):
 
 def getJSON(typeOfRequest, **kwargs):
     UUIDType = ''
+    if typeOfRequest == 'player':
+        UUIDType = 'uuid'
+        uuid = kwargs['uuid']
+        if len(uuid) <= 16:
+            UUIDType = 'name' # TODO: I could probably clean this up somehow.
+    if typeOfRequest == 'skyblockplayer':
+        typeOfRequest = "/skyblock/profiles"
     requestEnd = ''
     api_key = os.environ['API_KEY']
     for name, value in kwargs.items():
