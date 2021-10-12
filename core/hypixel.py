@@ -126,11 +126,8 @@ def setKeys(api_keys):
     """
     for api_key in api_keys:
         if len(api_key) == HYPIXEL_API_KEY_LENGTH:
-            response = getJSON('key', api_key)
-            if response['success']:
-                verified_api_keys.append(api_key)
-            else:
-                raise HypixelAPIError("hypixel/setKeys: Error with key XXXXXXXX-XXXX-XXXX-XXXX{} | {}".format(api_key[23:], response))
+            response = getJSON('key', key=api_key)
+            verified_api_keys.append(api_key)
         else:
             raise HypixelAPIError("hypixel/setKeys: The key '{}' is not 36 characters.".format(api_key))
 
