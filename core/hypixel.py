@@ -9,6 +9,8 @@ from random import choice
 from time import time
 import grequests
 
+import json
+
 import leveling
 
 HYPIXEL_API_URL = 'https://api.hypixel.net/'
@@ -38,6 +40,8 @@ class HypixelAPIError(Exception):
     pass
 
 def getJSON(typeOfRequest, **kwargs):
+    response = {}
+    global response
     """ This private function is used for getting JSON from Hypixel's Public API. """
     requestEnd = ''
     if typeOfRequest == 'key':
