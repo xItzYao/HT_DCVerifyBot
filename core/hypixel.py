@@ -11,6 +11,8 @@ import grequests
 
 import leveling
 
+global response
+
 HYPIXEL_API_URL = 'https://api.hypixel.net/'
 UUIDResolverAPI = "https://sessionserver.mojang.com/session/minecraft/profile/"
 
@@ -38,7 +40,6 @@ class HypixelAPIError(Exception):
     pass
 
 def getJSON(typeOfRequest, **kwargs):
-    nonlocal response
     """ This private function is used for getting JSON from Hypixel's Public API. """
     requestEnd = ''
     if typeOfRequest == 'key':
