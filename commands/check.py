@@ -8,11 +8,9 @@ from core.classes import Cog_Extension
 from discord.utils import get
 from difflib import *
 import core.hypixel as hypixel
+import os
 
-with open('setting.json','r',encoding='utf8') as jFile:
-    jdata = json.load(jFile)
-
-hypixel.setKeys(jdata['API_KEY'])
+hypixel.setKeys(os.environ['API_KEY'])
 
 class Test(Cog_Extension):
     @commands.command()
