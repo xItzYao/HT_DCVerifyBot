@@ -125,9 +125,10 @@ def setKeys(api_keys):
 
             Example: ``['740b8cf8-8aba-f2ed-f7b10119d28']``.
     """
+    keyy = 'key'
     for api_key in api_keys:
         if len(api_key) == HYPIXEL_API_KEY_LENGTH:
-            response = getJSON('key')
+            response = getJSON(keyy)
             verified_api_keys.append(api_key)
         else:
             raise HypixelAPIError("hypixel/setKeys: The key '{}' is not 36 characters.".format(api_key))
