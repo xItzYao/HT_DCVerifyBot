@@ -10,7 +10,8 @@ from difflib import *
 import core.hypixel as hypixel
 import os
 
-hypixel.setKeys(os.environ['API_KEY'])
+HYP_API = [os.environ['API_KEY']]
+hypixel.setKeys(HYP_API)
 
 class Test(Cog_Extension):
     @commands.command()
