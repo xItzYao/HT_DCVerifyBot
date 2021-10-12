@@ -39,9 +39,7 @@ class HypixelAPIError(Exception):
     """ Simple exception if something's gone very wrong and the program can't continue. """
     pass
 
-response = {}
 def getJSON(typeOfRequest, **kwargs):
-    global response
     """ This private function is used for getting JSON from Hypixel's Public API. """
     requestEnd = ''
     if typeOfRequest == 'key':
@@ -82,10 +80,7 @@ def getJSON(typeOfRequest, **kwargs):
             requestCache[cacheURL]['data'] = response
             requestCache[cacheURL]['cacheTime'] = time() + cacheTime # Cache request and clean current cache.
             cleanCache()
-    try:
-        return response[typeOfRequest]
-    except KeyError:
-        return response
+    return response[typeOfRequest]
 
 def cleanCache():
     """ This function is occasionally called to clean the cache of any expired objects. """
