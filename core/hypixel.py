@@ -42,6 +42,7 @@ class HypixelAPIError(Exception):
     pass
 
 def getJSON(typeOfRequest, **kwargs):
+    UUIDType = ''
     requestEnd = ''
     api_key = os.environ['API_KEY']
     for name, value in kwargs.items():
