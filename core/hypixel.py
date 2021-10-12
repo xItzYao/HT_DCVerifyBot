@@ -10,6 +10,7 @@ from time import time
 import grequests
 
 import json
+import urllib.request
 
 import leveling
 
@@ -65,10 +66,7 @@ def getJSON(typeOfRequest, **kwargs):
     if cacheURL in requestCache and requestCache[cacheURL]['cacheTime'] > time():
         response = requestCache[cacheURL]['data'] # TODO: Extend cache time
     else:
-        requests = (grequests.get(u) for u in allURLS)
-        responses = grequests.imap(requests)
-        for r in responses:
-            response = r.json()
+        response = json.loads(urllib.request.urlopen(allURLS[0]).read())
         
         if not response['success']:
             raise HypixelAPIError('API Error')
