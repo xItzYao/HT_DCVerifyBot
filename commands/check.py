@@ -8,6 +8,7 @@ from discord.ext import commands
 from core.classes import Cog_Extension
 from discord.utils import get
 from difflib import *
+import hypixel
 
 class Check(Cog_Extension):
     @commands.command()
