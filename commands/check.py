@@ -16,61 +16,59 @@ hypixel.setKeys(HYP_API)
 class Test(Cog_Extension):
     @commands.command()
     async def check(self,ctx):
-        member = ctx.guild.get_member(569831488665812992)
-        if str(member.status) != 'online':
-            await ctx.send(f"{ctx.message.author.mention} Checking......")
-            nickname = ctx.message.author.display_name
-            if SequenceMatcher(None, nickname, "<").ratio() == 0 or SequenceMatcher(None, nickname, ">").ratio() == 0:
-                await ctx.send("暱稱格式不正確\n請改為暱稱<Minecraft ID>")
-            else:
-                id = nickname.split('<')
-                id1 = id[1].split('>')
-                await ctx.send(f"Minecraft ID : {id1[0]}")
-                if id1[0] != "no ID":
-                    resource_url = 'https://api.mojang.com/users/profiles/minecraft/' + id1[0]
-                    try:
-                        getPlayerUUID = json.loads(urllib.request.urlopen(resource_url).read())
-                        playerUUID = getPlayerUUID['id']
-                        player = hypixel.Player(playerUUID)
-                        playerRank = player.getRank()
-                        await ctx.send(f"Hypixel Rank : " + playerRank['rank'])
-                        memberRankRole = discord.utils.get(ctx.guild.roles, name=playerRank['rank'])
-                        await ctx.author.add_roles(memberRankRole)
-                        await ctx.send(f"Hypixel Rank身分組成功增加")
-                        #公會ID
-                        playerGuildID = player.getGuildID()
-                        if playerGuildID is not None:
-                            guild = hypixel.Guild(playerGuildID)
-                            playerGuildData = guild.JSON
-                            playerGuildName = str(playerGuildData['name'])
-                            await ctx.send(f"目前所在公會 : " + playerGuildName)
-                            try:
-                                memberGuildRole = discord.utils.get(ctx.guild.roles, name=playerGuildName)
-                            except:
-                                await ctx.guild.create_role(name = playerGuildName)
-                                memberGuildRole = discord.utils.get(ctx.guild.roles, name=playerGuildName)
-                            await ctx.author.add_roles(memberGuildRole)
-                            await ctx.send(f"公會身分組成功增加")
-                            if playerGuildName == 'HelloTaiwan':
-                                memberRoleName = '普通會員<Member>'
-                                print(memberRoleName)
-                            else:
-                                memberRoleName = '🌈好捧油🌈<Friend>'
-                                print(memberRoleName)
-                        else:
-                            await ctx.send(f"查無公會")
-                            memberRoleName = '🌈好捧油🌈<Friend>'
-                        #DC身分組增加
-                        memberRole = discord.utils.get(ctx.guild.roles, name=memberRoleName)
-                        await ctx.author.add_roles(memberRole)
-                        await ctx.send(f"DC身分組成功增加\nHaving Fun :U")
-                    except:
-                        await ctx.send("查無ID，請確認ID是否正確\n若沒有Minecraft，可將暱稱改為\n暱稱<no ID>")  
-                else:
-                    memberRoleName = '🌈好捧油🌈<Friend>'
-                    memberRole = discord.utils.get(ctx.guild.roles, name=memberRoleName)
-                    await ctx.author.add_roles(memberRole)
-                    await ctx.send(f"DC身分組成功增加\nHaving Fun :U")
+          await ctx.send(f"{ctx.message.author.mention} Checking......")
+          nickname = ctx.message.author.display_name
+          if SequenceMatcher(None, nickname, "<").ratio() == 0 or SequenceMatcher(None, nickname, ">").ratio() == 0:
+              await ctx.send("暱稱格式不正確\n請改為暱稱<Minecraft ID>")
+          else:
+              id = nickname.split('<')
+              id1 = id[1].split('>')
+              await ctx.send(f"Minecraft ID : {id1[0]}")
+              if id1[0] != "no ID":
+                  resource_url = 'https://api.mojang.com/users/profiles/minecraft/' + id1[0]
+                  try:
+                      getPlayerUUID = json.loads(urllib.request.urlopen(resource_url).read())
+                      playerUUID = getPlayerUUID['id']
+                      player = hypixel.Player(playerUUID)
+                      playerRank = player.getRank()
+                      await ctx.send(f"Hypixel Rank : " + playerRank['rank'])
+                      memberRankRole = discord.utils.get(ctx.guild.roles, name=playerRank['rank'])
+                      await ctx.author.add_roles(memberRankRole)
+                      await ctx.send(f"Hypixel Rank身分組成功增加")
+                      #公會ID
+                      playerGuildID = player.getGuildID()
+                      if playerGuildID is not None:
+                          guild = hypixel.Guild(playerGuildID)
+                          playerGuildData = guild.JSON
+                          playerGuildName = str(playerGuildData['name'])
+                          await ctx.send(f"目前所在公會 : " + playerGuildName)
+                          try:
+                              memberGuildRole = discord.utils.get(ctx.guild.roles, name=playerGuildName)
+                          except:
+                              await ctx.guild.create_role(name = playerGuildName)
+                              memberGuildRole = discord.utils.get(ctx.guild.roles, name=playerGuildName)
+                          await ctx.author.add_roles(memberGuildRole)
+                          await ctx.send(f"公會身分組成功增加")
+                          if playerGuildName == 'HelloTaiwan':
+                              memberRoleName = '普通會員<Member>'
+                              print(memberRoleName)
+                          else:
+                              memberRoleName = '🌈好捧油🌈<Friend>'
+                              print(memberRoleName)
+                      else:
+                          await ctx.send(f"查無公會")
+                          memberRoleName = '🌈好捧油🌈<Friend>'
+                      #DC身分組增加
+                      memberRole = discord.utils.get(ctx.guild.roles, name=memberRoleName)
+                      await ctx.author.add_roles(memberRole)
+                      await ctx.send(f"DC身分組成功增加\nHaving Fun :U")
+                  except:
+                      await ctx.send("查無ID，請確認ID是否正確\n若沒有Minecraft，可將暱稱改為\n暱稱<no ID>")  
+              else:
+                  memberRoleName = '🌈好捧油🌈<Friend>'
+                  memberRole = discord.utils.get(ctx.guild.roles, name=memberRoleName)
+                  await ctx.author.add_roles(memberRole)
+                  await ctx.send(f"DC身分組成功增加\nHaving Fun :U")
 
 def setup(bot):
     bot.add_cog(Test(bot))
