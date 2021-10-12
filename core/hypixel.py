@@ -78,7 +78,6 @@ def getJSON(typeOfRequest, **kwargs):
             requestCache[cacheURL]['data'] = response
             requestCache[cacheURL]['cacheTime'] = time() + cacheTime # Cache request and clean current cache.
             cleanCache()
-    global response
     try:
         return response[typeOfRequest]
     except KeyError:
