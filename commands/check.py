@@ -7,7 +7,7 @@ from discord.ext import commands
 from core.classes import Cog_Extension
 from discord.utils import get
 from difflib import *
-import core.hypixel as hypixel
+import hypixel
 import os
 
 class Test(Cog_Extension):
