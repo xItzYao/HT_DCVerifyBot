@@ -6,11 +6,6 @@ from discord.ext import commands
 
 bot = commands.Bot(os.environ['prefix'])
 
-import core.hypixel as hypixel
-API = str(os.environ['API_KEY'])
-HYP_API = [API]
-hypixel.setKeys(HYP_API)
-
 @bot.event
 async def on_ready():
     print('澳門首家ㄐㄐ賭場上線啦')
