@@ -52,7 +52,7 @@ def getJSON(typeOfRequest, **kwargs):
         api_key = kwargs['key']
     else:
         api_key = os.environ['API_KEY'] # Select a random API key from the list available.
-
+        
         if typeOfRequest == 'player':
             UUIDType = 'uuid'
             uuid = kwargs['uuid']
@@ -64,9 +64,8 @@ def getJSON(typeOfRequest, **kwargs):
             if typeOfRequest == "player" and name == "uuid":
                 name = UUIDType
             requestEnd += '&{}={}'.format(name, value)
-
-
-
+    cacheURL = HYPIXEL_API_URL + '{}?key={}{}'.format(typeOfRequest, "None", requestEnd) # TODO: Lowercase
+    allURLS = [HYPIXEL_API_URL + '{}?key={}{}'.format(typeOfRequest, api_key, requestEnd)] # Create request URL.
     # If url exists in request cache, and time hasn't expired...
     if cacheURL in requestCache and requestCache[cacheURL]['cacheTime'] > time():
         response = requestCache[cacheURL]['data'] # TODO: Extend cache time
