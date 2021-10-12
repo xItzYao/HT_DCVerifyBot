@@ -42,11 +42,12 @@ class HypixelAPIError(Exception):
     pass
 
 def getJSON(typeOfRequest, **kwargs):
+    api_key = kwargs['key']
+    requestEnd = ''
     cacheURL = HYPIXEL_API_URL + '{}?key={}{}'.format(typeOfRequest, "None", requestEnd) # TODO: Lowercase
     allURLS = [HYPIXEL_API_URL + '{}?key={}{}'.format(typeOfRequest, api_key, requestEnd)] # Create request URL.
     response = requestCache[cacheURL]['data']
     """ This private function is used for getting JSON from Hypixel's Public API. """
-    requestEnd = ''
     if typeOfRequest == 'key':
         api_key = kwargs['key']
     else:
