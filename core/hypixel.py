@@ -39,7 +39,7 @@ class HypixelAPIError(Exception):
     """ Simple exception if something's gone very wrong and the program can't continue. """
     pass
 
-response = None
+response = {}
 def getJSON(typeOfRequest, **kwargs):
     global response
     """ This private function is used for getting JSON from Hypixel's Public API. """
