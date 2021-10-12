@@ -1,5 +1,6 @@
 discord.py==1.7.3
 hypixel==0.8.0
-requests==2.26.0
+grequests==0.6.0
 requests-oauthlib==1.3.0
 typing-extensions==3.7.4.3
+urllib3==1.26.6
