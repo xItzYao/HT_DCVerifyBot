@@ -71,7 +71,7 @@ def getJSON(typeOfRequest, **kwargs):
             response = r.json()
         
         if not response['success']:
-            raise HypixelAPIError(response)
+            raise HypixelAPIError('API Error')
         if typeOfRequest == 'player':
             if response['player'] is None:
                 raise PlayerNotFoundException(uuid)
