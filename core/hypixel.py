@@ -42,11 +42,10 @@ class HypixelAPIError(Exception):
     pass
 
 def getJSON(typeOfRequest, **kwargs):
-    response = None
     """ This private function is used for getting JSON from Hypixel's Public API. """
     requestEnd = ''
-    if typeOfRequest == 12344:
-        api_key = os.environ['API_KEY']
+    if typeOfRequest == 'key':
+        api_key = kwargs['key']
     else:
         api_key = choice(verified_api_keys) # Select a random API key from the list available.
 
@@ -64,6 +63,7 @@ def getJSON(typeOfRequest, **kwargs):
 
     cacheURL = HYPIXEL_API_URL + '{}?key={}{}'.format(typeOfRequest, "None", requestEnd) # TODO: Lowercase
     allURLS = [HYPIXEL_API_URL + '{}?key={}{}'.format(typeOfRequest, api_key, requestEnd)] # Create request URL.
+
     # If url exists in request cache, and time hasn't expired...
     if cacheURL in requestCache and requestCache[cacheURL]['cacheTime'] > time():
         response = requestCache[cacheURL]['data'] # TODO: Extend cache time
@@ -72,18 +72,21 @@ def getJSON(typeOfRequest, **kwargs):
         responses = grequests.imap(requests)
         for r in responses:
             response = r.json()
-        
+
         if not response['success']:
-            raise HypixelAPIError('API Error')
+            raise HypixelAPIError(response)
         if typeOfRequest == 'player':
             if response['player'] is None:
                 raise PlayerNotFoundException(uuid)
-        if typeOfRequest != 12344: # Don't cache key requests.
+        if typeOfRequest != 'key': # Don't cache key requests.
             requestCache[cacheURL] = {}
             requestCache[cacheURL]['data'] = response
             requestCache[cacheURL]['cacheTime'] = time() + cacheTime # Cache request and clean current cache.
             cleanCache()
-    return response[typeOfRequest]
+    try:
+        return response[typeOfRequest]
+    except KeyError:
+        return response
 
 def cleanCache():
     """ This function is occasionally called to clean the cache of any expired objects. """
@@ -129,11 +132,13 @@ def setKeys(api_keys):
 
             Example: ``['740b8cf8-8aba-f2ed-f7b10119d28']``.
     """
-    keyy = 12344
     for api_key in api_keys:
         if len(api_key) == HYPIXEL_API_KEY_LENGTH:
-            response = getJSON(keyy)
-            verified_api_keys.append(api_key)
+            response = getJSON('key', key=api_key)
+            if response['success']:
+                verified_api_keys.append(api_key)
+            else:
+                raise HypixelAPIError("hypixel/setKeys: Error with key XXXXXXXX-XXXX-XXXX-XXXX{} | {}".format(api_key[23:], response))
         else:
             raise HypixelAPIError("hypixel/setKeys: The key '{}' is not 36 characters.".format(api_key))
 
