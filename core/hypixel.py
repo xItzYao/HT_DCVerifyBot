@@ -9,9 +9,6 @@ from random import choice
 from time import time
 import grequests
 
-import json
-response = {}
-
 import leveling
 
 HYPIXEL_API_URL = 'https://api.hypixel.net/'
@@ -41,7 +38,7 @@ class HypixelAPIError(Exception):
     pass
 
 def getJSON(typeOfRequest, **kwargs):
-    global response
+    nonlocal response
     """ This private function is used for getting JSON from Hypixel's Public API. """
     requestEnd = ''
     if typeOfRequest == 'key':
@@ -116,7 +113,7 @@ def setCacheTime(seconds):
         raise HypixelAPIError("Invalid cache time \"{}\"".format(seconds)) from chainedException
 
 def setKeys(api_keys):
-    global response
+    nonlocal response
     """ This function is used to set your Hypixel API keys.
         It also checks that they are valid/working.
 
@@ -283,7 +280,7 @@ class Guild:
             raise GuildIDNotValid(GuildID) from chainedException
 
     def getMembers(self):
-        global response
+        nonlocal response
         """ This function enumerates all the members in a guild.
         Mojang's API rate-limits this weirdly.
         This is an extremely messy helper function. Use at your own risk. """
