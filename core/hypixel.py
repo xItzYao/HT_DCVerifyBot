@@ -61,7 +61,7 @@ def getJSON(typeOfRequest, **kwargs):
     allURLS = [HYPIXEL_API_URL + '{}?key={}{}'.format(typeOfRequest, api_key, requestEnd)] # Create request URL.
 
     # If url exists in request cache, and time hasn't expired...
-    response = {}
+    response = {"success":false}
     if cacheURL in requestCache and requestCache[cacheURL]['cacheTime'] > time():
         response = requestCache[cacheURL]['data'] # TODO: Extend cache time
     else:
