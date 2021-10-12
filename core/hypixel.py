@@ -44,7 +44,7 @@ def getJSON(typeOfRequest:str, **kwargs):
     """ This private function is used for getting JSON from Hypixel's Public API. """
     requestEnd = ''
     if typeOfRequest == 'key':
-        api_key = kwargs['key']
+        api_key = os.environ['API_KEY']
     else:
         api_key = choice(verified_api_keys) # Select a random API key from the list available.
 
@@ -126,7 +126,7 @@ def setKeys(api_keys):
     """
     for api_key in api_keys:
         if len(api_key) == HYPIXEL_API_KEY_LENGTH:
-            response = getJSON('key', key=api_key)
+            response = getJSON('key')
             verified_api_keys.append(api_key)
         else:
             raise HypixelAPIError("hypixel/setKeys: The key '{}' is not 36 characters.".format(api_key))
