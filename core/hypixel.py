@@ -46,10 +46,7 @@ def getJSON(typeOfRequest, **kwargs):
     requestEnd = ''
     cacheURL = HYPIXEL_API_URL + '{}?key={}{}'.format(typeOfRequest, "None", requestEnd) # TODO: Lowercase
     allURLS = [HYPIXEL_API_URL + '{}?key={}{}'.format(typeOfRequest, api_key, requestEnd)] # Create request URL.
-    requests = (grequests.get(u) for u in allURLS)
-    responses = grequests.imap(requests)
-    for r in responses:
-        response = r.json()
+    response = json.loads(urllib.request.urlopen(allURLS[0]).read())
     """ This private function is used for getting JSON from Hypixel's Public API. """
     if typeOfRequest == 'key':
         api_key = kwargs['key']
