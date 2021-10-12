@@ -38,7 +38,6 @@ class HypixelAPIError(Exception):
     pass
 
 def getJSON(typeOfRequest, **kwargs):
-    nonlocal response
     """ This private function is used for getting JSON from Hypixel's Public API. """
     requestEnd = ''
     if typeOfRequest == 'key':
@@ -113,7 +112,6 @@ def setCacheTime(seconds):
         raise HypixelAPIError("Invalid cache time \"{}\"".format(seconds)) from chainedException
 
 def setKeys(api_keys):
-    nonlocal response
     """ This function is used to set your Hypixel API keys.
         It also checks that they are valid/working.
 
@@ -131,11 +129,11 @@ def setKeys(api_keys):
     """
     for api_key in api_keys:
         if len(api_key) == HYPIXEL_API_KEY_LENGTH:
-            response = getJSON('key', key=api_key)
-            if response['success']:
+            response1 = getJSON('key', key=api_key)
+            if response1['success']:
                 verified_api_keys.append(api_key)
             else:
-                raise HypixelAPIError("hypixel/setKeys: Error with key XXXXXXXX-XXXX-XXXX-XXXX{} | {}".format(api_key[23:], response))
+                raise HypixelAPIError("hypixel/setKeys: Error with key XXXXXXXX-XXXX-XXXX-XXXX{} | {}".format(api_key[23:], response1))
         else:
             raise HypixelAPIError("hypixel/setKeys: The key '{}' is not 36 characters.".format(api_key))
 
@@ -280,7 +278,6 @@ class Guild:
             raise GuildIDNotValid(GuildID) from chainedException
 
     def getMembers(self):
-        nonlocal response
         """ This function enumerates all the members in a guild.
         Mojang's API rate-limits this weirdly.
         This is an extremely messy helper function. Use at your own risk. """
@@ -306,8 +303,8 @@ class Guild:
                 URLStoRequest.append(UUIDResolverAPI + member['uuid'])
         requests = (grequests.get(u) for u in URLStoRequest)
         responses = grequests.map(requests)
-        for response in responses:
-            requestCache[UUIDResolverAPI + response.json()['id']] = response.json()
+        for response2 in responses:
+            requestCache[UUIDResolverAPI + response2.json()['id']] = response2.json()
         i = 0
         for uindex, user in enumerate(allURLS):
             try:
