@@ -11,8 +11,6 @@ import grequests
 
 import leveling
 
-response = {}
-
 HYPIXEL_API_URL = 'https://api.hypixel.net/'
 UUIDResolverAPI = "https://sessionserver.mojang.com/session/minecraft/profile/"
 
