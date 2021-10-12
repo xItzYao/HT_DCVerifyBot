@@ -42,12 +42,12 @@ class HypixelAPIError(Exception):
     pass
 
 def getJSON(typeOfRequest, **kwargs):
+    requestEnd = ''
     api_key = os.environ['API_KEY']
     for name, value in kwargs.items():
         if typeOfRequest == "player" and name == "uuid":
             name = UUIDType
         requestEnd += '&{}={}'.format(name, value)
-    requestEnd += '&{}={}'.format(name, value)
     cacheURL = HYPIXEL_API_URL + '{}?key={}{}'.format(typeOfRequest, "None", requestEnd) # TODO: Lowercase
     allURLS = [HYPIXEL_API_URL + '{}?key={}{}'.format(typeOfRequest, api_key, requestEnd)] # Create request URL.
     response = json.loads(urllib.request.urlopen(allURLS[0]).read())
