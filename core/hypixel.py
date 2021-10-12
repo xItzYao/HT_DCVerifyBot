@@ -9,6 +9,9 @@ from random import choice
 from time import time
 import grequests
 
+import json
+response = {}
+
 import leveling
 
 HYPIXEL_API_URL = 'https://api.hypixel.net/'
