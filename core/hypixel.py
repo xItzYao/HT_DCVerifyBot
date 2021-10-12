@@ -40,7 +40,7 @@ class HypixelAPIError(Exception):
     """ Simple exception if something's gone very wrong and the program can't continue. """
     pass
 
-def getJSON(typeOfRequest, **kwargs):
+def getJSON(typeOfRequest:str, **kwargs):
     """ This private function is used for getting JSON from Hypixel's Public API. """
     requestEnd = ''
     if typeOfRequest == 'key':
@@ -126,7 +126,7 @@ def setKeys(api_keys):
     """
     for api_key in api_keys:
         if len(api_key) == HYPIXEL_API_KEY_LENGTH:
-            response = getJSON('key', key=api_key)
+            response = getJSON('key', api_key)
             if response['success']:
                 verified_api_keys.append(api_key)
             else:
