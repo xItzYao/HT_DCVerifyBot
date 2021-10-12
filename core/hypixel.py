@@ -38,7 +38,7 @@ class HypixelAPIError(Exception):
     pass
 
 def getJSON(typeOfRequest, **kwargs):
-    global response
+    nonlocal response
     """ This private function is used for getting JSON from Hypixel's Public API. """
     requestEnd = ''
     if typeOfRequest == 'key':
