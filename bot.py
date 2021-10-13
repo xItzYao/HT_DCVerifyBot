@@ -3,9 +3,7 @@ import json
 import os
 from discord.ext import commands
 
-intents = discord.Intents.default()
-intents.members = True
-intents.presences = True
+intents = discord.Intents.all()
 
 bot = commands.Bot(os.environ['prefix'] , intents = intents)
 
