@@ -48,7 +48,7 @@ class Test(Cog_Extension):
                       except:
                           print(playerGuildName)
                           guild = bot.get_guild(518290953908518922)
-                          await guild.create_role = (name = 'awd')
+                          await guild.create_role(name = 'awd')
                           print(playerGuildName)
                           memberGuildRole = discord.utils.get(ctx.guild.roles, name=playerGuildName)
                       await ctx.author.add_roles(memberGuildRole)
