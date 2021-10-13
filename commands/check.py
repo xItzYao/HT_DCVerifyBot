@@ -41,10 +41,14 @@ class Test(Cog_Extension):
                       playerGuildData = guild.JSON
                       playerGuildName = str(playerGuildData['name'])
                       await ctx.send(f"目前所在公會 : " + playerGuildName)
+                      print(playerGuildName)
                       try:
                           memberGuildRole = discord.utils.get(ctx.guild.roles, name=playerGuildName)
+                          print(playerGuildName)
                       except:
+                          print(playerGuildName)
                           await ctx.guild.create_role(name = playerGuildName)
+                          print(playerGuildName)
                           memberGuildRole = discord.utils.get(ctx.guild.roles, name=playerGuildName)
                       await ctx.author.add_roles(memberGuildRole)
                       await ctx.send(f"公會身分組成功增加")
