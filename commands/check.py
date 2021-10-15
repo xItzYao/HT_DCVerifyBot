@@ -55,12 +55,12 @@ class Check(Cog_Extension):
                           print(memberRoleName)
                       else:
                           memberRoleName = '🌈好捧油🌈<Friend>'
-                          playerRank['rank'] = "None"
-                          playerGuildName = "None"
                           print(memberRoleName)
                   else:
                       await ctx.send(f"查無公會")
                       memberRoleName = '🌈好捧油🌈<Friend>'
+                      playerRank['rank'] = "None"
+                      playerGuildName = "None"
                   #DC身分組增加
                   memberRole = discord.utils.get(ctx.guild.roles, name=memberRoleName)
                   await ctx.author.add_roles(memberRole)
