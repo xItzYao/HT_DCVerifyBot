@@ -24,24 +24,20 @@ class Check(Cog_Extension):
           else:
               id = nickname.split('<')
               id1 = id[1].split('>')
-              await ctx.send(f"Minecraft ID : {id1[0]}")
               if id1[0] != "no ID":
                   resource_url = 'https://api.mojang.com/users/profiles/minecraft/' + id1[0]
                   getPlayerUUID = json.loads(urllib.request.urlopen(resource_url).read())
                   playerUUID = getPlayerUUID['id']
                   player = hypixel.Player(playerUUID)
                   playerRank = player.getRank()
-                  await ctx.send(f"Hypixel Rank : " + playerRank['rank'])
                   memberRankRole = discord.utils.get(ctx.guild.roles, name=playerRank['rank'])
                   await ctx.author.add_roles(memberRankRole)
-                  await ctx.send(f"Hypixel Rank身分組成功增加")
                   #公會ID
                   playerGuildID = player.getGuildID()
                   if playerGuildID is not None:
                       guild = hypixel.Guild(playerGuildID)
                       playerGuildData = guild.JSON
                       playerGuildName = str(playerGuildData['name'])
-                      await ctx.send(f"目前所在公會 : " + playerGuildName)
                       print(playerGuildName)
                       is_role_ava = discord.utils.get(ctx.guild.roles,name=playerGuildName)
                       if is_role_ava is None:
@@ -50,7 +46,6 @@ class Check(Cog_Extension):
                       else:
                            memberGuildRole = discord.utils.get(ctx.guild.roles, name=playerGuildName)
                       await ctx.author.add_roles(memberGuildRole)
-                      await ctx.send(f"公會身分組成功增加")
                       if playerGuildName == 'HelloTaiwan':
                           memberRoleName = '普通會員<Member>'
                           print(memberRoleName)
@@ -58,7 +53,6 @@ class Check(Cog_Extension):
                           memberRoleName = '🌈好捧油🌈<Friend>'
                           print(memberRoleName)
                   else:
-                    await ctx.send(f"查無公會")
                     memberRoleName = '🌈好捧油🌈<Friend>'
                     playerRank['rank'] = "None"
                     playerGuildName = "None"
@@ -70,7 +64,6 @@ class Check(Cog_Extension):
                 pass
               memberRole = discord.utils.get(ctx.guild.roles, name=memberRoleName)
               await ctx.author.add_roles(memberRole)
-              await ctx.send(f"DC身分組成功增加\nHaving Fun :U")
               embed=discord.Embed(title="Player Information", description="以下會秀出你的資訊", color=0xe2ff0a)
               embed.add_field(name="Minecraft ID", value=id1[0], inline=False)
               embed.add_field(name="Hypixel Rank", value=playerRank['rank'], inline=False)
