@@ -56,12 +56,11 @@ class Check(Cog_Extension):
                       else:
                           memberRoleName = '🌈好捧油🌈<Friend>'
                           print(memberRoleName)
-                  elif id1[0] == "no ID":
-                      await ctx.send(f"查無公會")
-                      memberRoleName = '🌈好捧油🌈<Friend>'
-                      playerRank['rank'] = "None"
-                      playerGuildName = "None"
-                  #DC身分組增加
+                  else:
+                    await ctx.send(f"查無公會")
+                    memberRoleName = '🌈好捧油🌈<Friend>'
+                    playerRank['rank'] = "None"
+                    playerGuildName = "None"
               else:
                 playerGuildName = "None"
                 playerRank['rank'] = "None"
