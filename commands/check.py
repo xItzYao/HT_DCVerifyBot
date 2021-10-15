@@ -30,6 +30,7 @@ class Check(Cog_Extension):
                   playerUUID = getPlayerUUID['id']
                   player = hypixel.Player(playerUUID)
                   playerRank = player.getRank()
+                  global playerRank
                   await ctx.send(f"Hypixel Rank : " + playerRank['rank'])
                   memberRankRole = discord.utils.get(ctx.guild.roles, name=playerRank['rank'])
                   await ctx.author.add_roles(memberRankRole)
