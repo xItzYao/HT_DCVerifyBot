@@ -62,15 +62,19 @@ class Check(Cog_Extension):
                       playerRank['rank'] = "None"
                       playerGuildName = "None"
                   #DC身分組增加
-                  memberRole = discord.utils.get(ctx.guild.roles, name=memberRoleName)
-                  await ctx.author.add_roles(memberRole)
-                  await ctx.send(f"DC身分組成功增加\nHaving Fun :U")
-                  embed=discord.Embed(title="Player Information", description="以下會秀出你的資訊", color=0xe2ff0a)
-                  embed.add_field(name="Minecraft ID", value=id1[0], inline=False)
-                  embed.add_field(name="Hypixel Rank", value=playerRank['rank'], inline=False)
-                  embed.add_field(name="目前所在公會", value=playerGuildName, inline=False)
-                  embed.set_footer(text="身分組添加完畢. Having Fun :P")
-                  await ctx.send(embed=embed)
+              else:
+                playerGuildName = "None"
+                playerRank['rank'] = "None"
+                memberRoleName = '🌈好捧油🌈<Friend>'
+              memberRole = discord.utils.get(ctx.guild.roles, name=memberRoleName)
+              await ctx.author.add_roles(memberRole)
+              await ctx.send(f"DC身分組成功增加\nHaving Fun :U")
+              embed=discord.Embed(title="Player Information", description="以下會秀出你的資訊", color=0xe2ff0a)
+              embed.add_field(name="Minecraft ID", value=id1[0], inline=False)
+              embed.add_field(name="Hypixel Rank", value=playerRank['rank'], inline=False)
+              embed.add_field(name="目前所在公會", value=playerGuildName, inline=False)
+              embed.set_footer(text="身分組添加完畢. Having Fun :P")
+              await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(Check(bot))
