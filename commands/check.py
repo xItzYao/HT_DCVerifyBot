@@ -55,6 +55,8 @@ class Check(Cog_Extension):
                           print(memberRoleName)
                       else:
                           memberRoleName = '🌈好捧油🌈<Friend>'
+                          playerRank['rank'] = "None"
+                          playerGuildName = "None"
                           print(memberRoleName)
                   else:
                       await ctx.send(f"查無公會")
@@ -63,6 +65,12 @@ class Check(Cog_Extension):
                   memberRole = discord.utils.get(ctx.guild.roles, name=memberRoleName)
                   await ctx.author.add_roles(memberRole)
                   await ctx.send(f"DC身分組成功增加\nHaving Fun :U")
+                  embed=discord.Embed(title="Player Information", description="以下會秀出你的資訊", color=0xe2ff0a)
+                  embed.add_field(name="Minecraft ID", value=id1[0], inline=True)
+                  embed.add_field(name="Hypixel Rank", value=playerRank['rank'], inline=True)
+                  embed.add_field(name="目前所在公會", value=playerGuildName, inline=True)
+                  embed.set_footer(text="身分組添加完畢. Having Fun :P")
+                  await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(Check(bot))
