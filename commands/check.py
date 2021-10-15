@@ -61,10 +61,12 @@ class Check(Cog_Extension):
                     memberRoleName = '🌈好捧油🌈<Friend>'
                     playerRank['rank'] = "None"
                     playerGuildName = "None"
-              else:
+              elif id1[0] == "no ID":
                 playerGuildName = "None"
                 playerRank['rank'] = "None"
                 memberRoleName = '🌈好捧油🌈<Friend>'
+              else:
+                pass
               memberRole = discord.utils.get(ctx.guild.roles, name=memberRoleName)
               await ctx.author.add_roles(memberRole)
               await ctx.send(f"DC身分組成功增加\nHaving Fun :U")
