@@ -68,7 +68,7 @@ class Check(Cog_Extension):
               embed.add_field(name="Minecraft ID", value=id1[0], inline=False)
               embed.add_field(name="Hypixel Rank", value=playerRank['rank'], inline=False)
               embed.add_field(name="目前所在公會", value=playerGuildName, inline=False)
-              embed.set_footer(text="身分組添加完畢. Having Fun :P")
+              embed.set_footer(text="身分組添加完畢 Having Fun :P")
               await ctx.send(embed=embed)
 
 def setup(bot):
