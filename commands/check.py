@@ -18,6 +18,7 @@ class Check(Cog_Extension):
     async def check(self,ctx):
           await ctx.send(f"{ctx.message.author.mention} Checking......")
           nickname = ctx.message.author.display_name
+          playerRank = player.getRank()
           if SequenceMatcher(None, nickname, "<").ratio() == 0 or SequenceMatcher(None, nickname, ">").ratio() == 0:
               await ctx.send("暱稱格式不正確\n請改為暱稱<Minecraft ID>")
           else:
@@ -29,8 +30,6 @@ class Check(Cog_Extension):
                   getPlayerUUID = json.loads(urllib.request.urlopen(resource_url).read())
                   playerUUID = getPlayerUUID['id']
                   player = hypixel.Player(playerUUID)
-                  playerRank = player.getRank()
-                  global playerRank
                   await ctx.send(f"Hypixel Rank : " + playerRank['rank'])
                   memberRankRole = discord.utils.get(ctx.guild.roles, name=playerRank['rank'])
                   await ctx.author.add_roles(memberRankRole)
