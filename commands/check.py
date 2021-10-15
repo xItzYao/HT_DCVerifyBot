@@ -16,7 +16,7 @@ hypixel.setKeys(API_KEYS)
 class Check(Cog_Extension):
     @commands.command()
     async def check(self,ctx):
-          playerRank = ["rank":"None"]
+          playerRank = {"rank":"None"}
           await ctx.send(f"{ctx.message.author.mention} Checking......")
           nickname = ctx.message.author.display_name
           if SequenceMatcher(None, nickname, "<").ratio() == 0 or SequenceMatcher(None, nickname, ">").ratio() == 0:
