@@ -13,7 +13,7 @@ import os
 API_KEYS = [os.environ['API_KEY']]
 hypixel.setKeys(API_KEYS)
 
-class Test(Cog_Extension):
+class Check(Cog_Extension):
     @commands.command()
     async def check(self,ctx):
           await ctx.send(f"{ctx.message.author.mention} Checking......")
@@ -65,4 +65,4 @@ class Test(Cog_Extension):
                   await ctx.send(f"DC身分組成功增加\nHaving Fun :U")
 
 def setup(bot):
-    bot.add_cog(Test(bot))
+    bot.add_cog(Check(bot))
