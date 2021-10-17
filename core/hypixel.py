@@ -76,8 +76,6 @@ def getJSON(typeOfRequest, **kwargs):
             if typeOfRequest == "player" and name == "uuid":
                 name = UUIDType
             requestEnd += '&{}={}'.format(name, value)
-        if typeOfRequest == "findGuild":
-            requestEnd += '&byName={}'.format(kwargs['guildName'])
             
     cacheURL = HYPIXEL_API_URL + '{}?key={}{}'.format(typeOfRequest, "None", requestEnd) # TODO: Lowercase
     allURLS = [HYPIXEL_API_URL + '{}?key={}{}'.format(typeOfRequest, api_key, requestEnd)] # Create request URL.
@@ -98,10 +96,7 @@ def getJSON(typeOfRequest, **kwargs):
             requestCache[cacheURL]['cacheTime'] = time() + cacheTime # Cache request and clean current cache.
             cleanCache()
     try:
-        if typeOfRequest == 'findGuild':
-            return response['guild']
-        else:
-            return response[typeOfRequest]
+        return response[typeOfRequest]
     except KeyError:
         return response
 
@@ -347,14 +342,7 @@ class Guild:
             roleList = allGuildMembers[member['role']]
             roleList.append(member['name'])
 
-        return allGuildMembers
-    
-    def getGuildbyName(guildName):
-        guildID = getJSON('findGuild', guildName = guildName)
-        if guildID['guild'] is None:
-            raise GuildIDNotValid()
-        return guildID['guild']
-    
+        return allGuildMembers    
     
 class Auction:
     """ This class represents an auction on Hypixel Skyblock as a single object.
