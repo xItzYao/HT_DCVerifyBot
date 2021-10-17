@@ -58,7 +58,6 @@ class GuildInfo(Cog_Extension):
             guildPreferredGames = preferredGamesAdd[1:].replace('BEDWARS', 'Bedwars').replace('SKYBLOCK', 'SkyBlock').replace('MURDER_MYSTERY', 'Murder Mystery').replace('SKYWARS', 'SkyWars').replace('DUELS', 'Duels').replace('SPEED_UHC', 'Speed UHC').replace('ARCADE', 'Arcade').replace('TNTGAMES', 'TNTGames')
             guildLevel = format(getGuildLevel.getLevel(guildJSON['exp']), '.1f')
             embed=discord.Embed(title=guildTag, url=f"https://plancke.io/hypixel/guild/name/{guildNameConvert}", color=lineColor)
-            embed.add_field(name="公會長", value=guildMaster, inline=False)
             embed.add_field(name="公會等級", value=guildLevel, inline=False)
             embed.add_field(name="主打遊戲", value=guildPreferredGames, inline=False)
             embed.add_field(name="公會人數", value=len(guildJSON['members']), inline=False)
