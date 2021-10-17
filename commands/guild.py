@@ -14,6 +14,8 @@ class GuildInfo(Cog_Extension):
     @commands.command()
     async def guild(self,ctx,*guildNameInput:str):
         try:
+            idd=hypixel.Guild.getGuildByName(guildNameInput)
+            print(idd)
             guildNameAdd = ""
             for name in guildNameInput:
                 guildNameAdd = f"{guildNameAdd} {name}"
