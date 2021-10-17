@@ -62,7 +62,7 @@ class GuildInfo(Cog_Extension):
             embed.add_field(name="公會等級", value=guildLevel, inline=False)
             embed.add_field(name="主打遊戲", value=guildPreferredGames, inline=False)
             embed.add_field(name="公會人數", value=len(guildJSON['members']), inline=False)
-            embed.add_field(name="上線人數", value=onlinePlayersCounting, inline=False)
+            embed.add_field(name="最多上線人數", value=onlinePlayersCounting, inline=False)
             embed.add_field(name="創建時間", value=guildCreatingTime, inline=False)
             await ctx.send(embed=embed)
         except hypixel.GuildIDNotValid:
