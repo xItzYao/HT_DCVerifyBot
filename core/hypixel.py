@@ -76,6 +76,9 @@ def getJSON(typeOfRequest, **kwargs):
             if typeOfRequest == "player" and name == "uuid":
                 name = UUIDType
             requestEnd += '&{}={}'.format(name, value)
+        if typeOfRequest == "findGuild":
+            requestEnd += '&byName={}'.format(kwargs['guildName'])
+            
     cacheURL = HYPIXEL_API_URL + '{}?key={}{}'.format(typeOfRequest, "None", requestEnd) # TODO: Lowercase
     allURLS = [HYPIXEL_API_URL + '{}?key={}{}'.format(typeOfRequest, api_key, requestEnd)] # Create request URL.
     # If url exists in request cache, and time hasn't expired...
@@ -342,6 +345,12 @@ class Guild:
             roleList.append(member['name'])
 
         return allGuildMembers
+    
+    def getGuildbyName(guildName):
+        guildID = getJSON('findGuild', guildName = guildName)
+        if guildID['guild'] is None:
+            raise GuildIDNotValid()
+        return guildID['guild']
     
     
 class Auction:
