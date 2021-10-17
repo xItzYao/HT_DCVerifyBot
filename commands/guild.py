@@ -6,6 +6,7 @@ import datetime
 import core.getGuildLevel as getGuildLevel
 import json
 import os
+import urllib.request
 
 API_KEY = os.environ['API_KEY']
 
@@ -19,8 +20,9 @@ class GuildInfo(Cog_Extension):
             guildNameConvert = guildNameAdd[1:].replace(' ','%20')
             print(guildNameConvert)
             resource_url = f"https://api.hypixel.net/findGuild?key={API_KEY}&byName={guildNameConvert}"
-            getGuildID = json.loads(urllib.request.urlopen(resource_url).read())
-            guildID = getGuildID['guild']
+            print(resource_url)
+            getGuildIDURL = json.loads(urllib.request.urlopen(resource_url).read())
+            guildID = getGuildIDURL['guild']
             print(guildID)
             guild = hypixel.Guild(guildID)
             guildJSON = guild.JSON
