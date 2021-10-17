@@ -3,7 +3,7 @@ A DC bot for HelloTaiwan guild.
 
 ### Updates
 ###### 2021/10/17
-- Add player info command.
+- Add player and guild info command.
 ###### 2021/10/15
 - Change ```ctx.send``` to ```embed```.
 ###### 2021/10/13
