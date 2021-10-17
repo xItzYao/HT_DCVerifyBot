@@ -15,6 +15,7 @@ class GuildInfo(Cog_Extension):
             guildNameConvert = guildNameAdd[1:].replace(' ','%20')
             print(guildNameConvert)
             guildID = hypixel.Guild.getGuildbyName(guildNameConvert)
+            print(guildID)
             guild = hypixel.Guild(guildID)
             guildJSON = guild.JSON
             guildName = guildJSON['name']
