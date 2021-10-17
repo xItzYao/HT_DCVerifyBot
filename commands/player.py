@@ -14,6 +14,7 @@ class PlayerInfo(Cog_Extension):
             getPlayerUUID = json.loads(urllib.request.urlopen(resource_url).read())
             playerUUID = getPlayerUUID['id']
             player = hypixel.Player(playerUUID)
+            playerID = player.getName()
             playerInfo = player.getPlayerInfo()
             firstLogin = int(playerInfo['firstLogin'])/1000
             firstLoginTime = datetime.datetime.fromtimestamp(firstLogin).strftime('%Y-%m-%d %H:%M:%S')
@@ -50,7 +51,7 @@ class PlayerInfo(Cog_Extension):
             if playerRank['rank'] == "Hypixel Admin" or playerRank['rank'] =="Hypixel Youtuber":
                 lineColor = 0xff0000
             embed=discord.Embed(title="Player Info", description="以下為玩家資料", color=lineColor)
-            embed.set_author(name=mcid, url="https://plancke.io/hypixel/player/stats/" + mcid, icon_url="https://crafatar.com/renders/head/" + playerUUID)
+            embed.set_author(name=playerID, url="https://plancke.io/hypixel/player/stats/" + mcid, icon_url="https://crafatar.com/renders/head/" + playerUUID)
             embed.set_thumbnail(url="https://crafatar.com/renders/body/" + playerUUID)
             embed.add_field(name="玩家等級", value=format(playerLevel , '.1f'), inline=False)
             embed.add_field(name="目前所在公會", value=playerGuildName, inline=False)
