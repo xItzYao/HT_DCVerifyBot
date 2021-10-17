@@ -342,7 +342,12 @@ class Guild:
             roleList = allGuildMembers[member['role']]
             roleList.append(member['name'])
 
-        return allGuildMembers    
+        return allGuildMembers
+
+    def getGuildByName(guildNameInput):
+        url = f"{HYPIXEL_API_URL}?key={os.environ['API_KEY']}&byName{guildNameInput}"
+        response = json.loads(urllib.request.urlopen(url).read())
+        return response['guild']
     
 class Auction:
     """ This class represents an auction on Hypixel Skyblock as a single object.
