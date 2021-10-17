@@ -18,6 +18,7 @@ class GuildInfo(Cog_Extension):
             guild = hypixel.Guild(guildID)
             guildJSON = guild.JSON
             guildName = guildJSON['name']
+            print(guildNameConvert)
             guildCreating = int(guildJSON['created'])/1000
             guildCreatingTime = datetime.datetime.fromtimestamp(guildCreating).strftime('%Y-%m-%d %H:%M:%S')
             guildMasterID = guildJSON['members'][0]['uuid']
