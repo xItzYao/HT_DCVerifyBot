@@ -98,7 +98,7 @@ def getJSON(typeOfRequest, **kwargs):
             requestCache[cacheURL]['cacheTime'] = time() + cacheTime # Cache request and clean current cache.
             cleanCache()
     try:
-        if typeOfRequest == 'findGuild'
+        if typeOfRequest == 'findGuild':
             return response['guild']
         else:
             return response[typeOfRequest]
