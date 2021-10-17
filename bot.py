@@ -12,6 +12,11 @@ async def on_ready():
     print('澳門首家ㄐㄐ賭場上線啦')
     await bot.change_presence(activity = discord.Streaming(name = "!help | !check進行身分認證", url = "https://www.twitch.tv/discord"))
 
+@bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send('Error')
+
 for fileName in os.listdir('./commands'):
     if fileName.endswith('.py'):
         bot.load_extension(f'commands.{fileName[:-3]}')
