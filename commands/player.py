@@ -59,9 +59,7 @@ class PlayerInfo(Cog_Extension):
             embed.add_field(name="首次登入時間", value=firstLoginTime, inline=False)
             embed.add_field(name="最後一次登入時間", value=lastLoginTime, inline=False)
             await ctx.send(embed=embed)
-        except hypixel.PlayerNotFoundException:
-            await ctx.send("查無此ID")
-        except UnicodeEncodeError:
+        except:
             await ctx.send("查無此ID")
 
 
