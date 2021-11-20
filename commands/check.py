@@ -70,6 +70,8 @@ class Check(Cog_Extension):
               embed.add_field(name="目前所在公會", value=playerGuildName, inline=False)
               embed.set_footer(text="身分組添加完畢 Having Fun :P")
               await ctx.send(embed=embed)
+              user = ctx.author
+              await user.send(embed = embed)
 
 def setup(bot):
     bot.add_cog(Check(bot))
