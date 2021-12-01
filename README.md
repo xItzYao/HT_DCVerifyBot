@@ -2,6 +2,8 @@
 A DC bot for HelloTaiwan guild.
 
 ### Updates
+###### 2021/11/??
+- Sending welcome message when join guild.
 ###### 2021/10/17
 - Add player and guild info command.
 ###### 2021/10/15
