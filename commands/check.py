@@ -26,36 +26,41 @@ class Check(Cog_Extension):
               id1 = id[1].split('>')
               if id1[0] != "no ID":
                   resource_url = 'https://api.mojang.com/users/profiles/minecraft/' + id1[0]
-                  getPlayerUUID = json.loads(urllib.request.urlopen(resource_url).read())
-                  playerUUID = getPlayerUUID['id']
-                  player = hypixel.Player(playerUUID)
-                  playerRank = player.getRank()
-                  memberRankRole = discord.utils.get(ctx.guild.roles, name=playerRank['rank'])
-                  await ctx.author.add_roles(memberRankRole)
-                  #公會ID
-                  playerGuildID = player.getGuildID()
-                  if playerGuildID is not None:
-                      guild = hypixel.Guild(playerGuildID)
-                      playerGuildData = guild.JSON
-                      playerGuildName = str(playerGuildData['name'])
-                      print(playerGuildName)
-                      is_role_ava = discord.utils.get(ctx.guild.roles,name=playerGuildName)
-                      if is_role_ava is None:
-                           await ctx.guild.create_role(name = playerGuildName)
-                           memberGuildRole = discord.utils.get(ctx.guild.roles, name=playerGuildName)
-                      else:
-                           memberGuildRole = discord.utils.get(ctx.guild.roles, name=playerGuildName)
-                      await ctx.author.add_roles(memberGuildRole)
-                      if playerGuildName == 'HelloTaiwan':
-                          memberRoleName = '普通會員<Member>'
-                          print(memberRoleName)
-                      else:
-                          memberRoleName = '🌈好捧油🌈<Friend>'
-                          print(memberRoleName)
+                  response = urllib.request.urlopen(resource_url)
+                  statusCode = response.getcode()
+                  if statusCode == 200:
+                    getPlayerUUID = json.loads(urllib.request.urlopen(resource_url).read())
+                    playerUUID = getPlayerUUID['id']
+                    player = hypixel.Player(playerUUID)
+                    playerRank = player.getRank()
+                    memberRankRole = discord.utils.get(ctx.guild.roles, name=playerRank['rank'])
+                    await ctx.author.add_roles(memberRankRole)
+                    #公會ID
+                    playerGuildID = player.getGuildID()
+                    if playerGuildID is not None:
+                        guild = hypixel.Guild(playerGuildID)
+                        playerGuildData = guild.JSON
+                        playerGuildName = str(playerGuildData['name'])
+                        print(playerGuildName)
+                        is_role_ava = discord.utils.get(ctx.guild.roles,name=playerGuildName)
+                        if is_role_ava is None:
+                            await ctx.guild.create_role(name = playerGuildName)
+                            memberGuildRole = discord.utils.get(ctx.guild.roles, name=playerGuildName)
+                        else:
+                            memberGuildRole = discord.utils.get(ctx.guild.roles, name=playerGuildName)
+                        await ctx.author.add_roles(memberGuildRole)
+                        if playerGuildName == 'HelloTaiwan':
+                            memberRoleName = '普通會員<Member>'
+                            print(memberRoleName)
+                        else:
+                            memberRoleName = '🌈好捧油🌈<Friend>'
+                            print(memberRoleName)
+                    else:
+                        memberRoleName = '🌈好捧油🌈<Friend>'
+                        playerRank['rank'] = "None"
+                        playerGuildName = "None"
                   else:
-                    memberRoleName = '🌈好捧油🌈<Friend>'
-                    playerRank['rank'] = "None"
-                    playerGuildName = "None"
+                    await ctx.send(f"查無ID:{id1[0]}")
               elif id1[0] == "no ID":
                 playerGuildName = "None"
                 playerRank['rank'] = "None"
