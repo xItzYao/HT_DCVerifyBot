@@ -24,6 +24,7 @@ class Check(Cog_Extension):
           else:
               id = nickname.split('<')
               id1 = id[1].split('>')
+              print(id1[0])
               if id1[0] != "no ID":
                   resource_url = 'https://api.mojang.com/users/profiles/minecraft/' + id1[0]
                   response = urllib.request.urlopen(resource_url)
@@ -31,6 +32,7 @@ class Check(Cog_Extension):
                   if statusCode == 200:
                     getPlayerUUID = json.loads(urllib.request.urlopen(resource_url).read())
                     playerUUID = getPlayerUUID['id']
+                    print(playerUUID)
                     player = hypixel.Player(playerUUID)
                     playerRank = player.getRank()
                     memberRankRole = discord.utils.get(ctx.guild.roles, name=playerRank['rank'])
