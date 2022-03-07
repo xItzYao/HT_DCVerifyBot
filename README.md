@@ -2,6 +2,8 @@
 A DC bot for HelloTaiwan guild.
 
 ### Updates
+###### 2022/03/05
+- Repairing the bug of bot couldn't select the ID that doesn't exist.
 ###### 2021/11/??
 - Sending welcome message when join guild.
 ###### 2021/10/17
